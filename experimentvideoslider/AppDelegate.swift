@@ -35,3 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+func dispatchDelayAfter(seconds: Double, action : @escaping () -> Void) {
+    let when = DispatchTime.now() + seconds
+    DispatchQueue.main.asyncAfter(deadline: when) {
+        action()
+    }
+}
