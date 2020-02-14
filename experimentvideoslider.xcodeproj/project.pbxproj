@@ -1,0 +1,447 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D3D8038389F81B1BAE581FFF /* Pods_experimentvideoslider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10F09ACEA14EC90D3CD1F61D /* Pods_experimentvideoslider.framework */; };
+		EB2671C223F647D100BEAB3B /* SliderBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2671C123F647D100BEAB3B /* SliderBaseView.swift */; };
+		EB2671C423F647E500BEAB3B /* SliderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2671C323F647E500BEAB3B /* SliderImageView.swift */; };
+		EB2671C623F647F900BEAB3B /* SliderVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2671C523F647F900BEAB3B /* SliderVideoView.swift */; };
+		EB6CB4E423C5AF22006625F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB4E323C5AF22006625F1 /* AppDelegate.swift */; };
+		EB6CB4E623C5AF22006625F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB4E523C5AF22006625F1 /* SceneDelegate.swift */; };
+		EB6CB4E823C5AF22006625F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB4E723C5AF22006625F1 /* ViewController.swift */; };
+		EB6CB4EB23C5AF22006625F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB6CB4E923C5AF22006625F1 /* Main.storyboard */; };
+		EB6CB4ED23C5AF25006625F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB6CB4EC23C5AF25006625F1 /* Assets.xcassets */; };
+		EB6CB4F023C5AF25006625F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB6CB4EE23C5AF25006625F1 /* LaunchScreen.storyboard */; };
+		EB6CB4FB23C5AF51006625F1 /* VideosSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB4F723C5AF51006625F1 /* VideosSliderView.swift */; };
+		EB6CB4FE23C5AF51006625F1 /* VideosSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB4FA23C5AF51006625F1 /* VideosSliderViewCell.swift */; };
+		EB6CB50323C5C00D006625F1 /* CubeAttributesAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB4FF23C5C00C006625F1 /* CubeAttributesAnimator.swift */; };
+		EB6CB50423C5C00D006625F1 /* AnimatedCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB50023C5C00C006625F1 /* AnimatedCollectionViewLayout.swift */; };
+		EB6CB50523C5C00D006625F1 /* LayoutAttributesAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB50123C5C00C006625F1 /* LayoutAttributesAnimator.swift */; };
+		EB6CB50623C5C00D006625F1 /* UIView+Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB50223C5C00D006625F1 /* UIView+Anchor.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		10F09ACEA14EC90D3CD1F61D /* Pods_experimentvideoslider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_experimentvideoslider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB2671C123F647D100BEAB3B /* SliderBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderBaseView.swift; sourceTree = "<group>"; };
+		EB2671C323F647E500BEAB3B /* SliderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderImageView.swift; sourceTree = "<group>"; };
+		EB2671C523F647F900BEAB3B /* SliderVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderVideoView.swift; sourceTree = "<group>"; };
+		EB6CB4E023C5AF22006625F1 /* experimentvideoslider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = experimentvideoslider.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB6CB4E323C5AF22006625F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EB6CB4E523C5AF22006625F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EB6CB4E723C5AF22006625F1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EB6CB4EA23C5AF22006625F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EB6CB4EC23C5AF25006625F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EB6CB4EF23C5AF25006625F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EB6CB4F123C5AF25006625F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB6CB4F723C5AF51006625F1 /* VideosSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideosSliderView.swift; sourceTree = "<group>"; };
+		EB6CB4FA23C5AF51006625F1 /* VideosSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideosSliderViewCell.swift; sourceTree = "<group>"; };
+		EB6CB4FF23C5C00C006625F1 /* CubeAttributesAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeAttributesAnimator.swift; sourceTree = "<group>"; };
+		EB6CB50023C5C00C006625F1 /* AnimatedCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedCollectionViewLayout.swift; sourceTree = "<group>"; };
+		EB6CB50123C5C00C006625F1 /* LayoutAttributesAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAttributesAnimator.swift; sourceTree = "<group>"; };
+		EB6CB50223C5C00D006625F1 /* UIView+Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Anchor.swift"; sourceTree = "<group>"; };
+		F2A2F5EC47BFB3ECDB9A44E1 /* Pods-experimentvideoslider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-experimentvideoslider.release.xcconfig"; path = "Target Support Files/Pods-experimentvideoslider/Pods-experimentvideoslider.release.xcconfig"; sourceTree = "<group>"; };
+		F5DEC854160DE9ADBA00DB00 /* Pods-experimentvideoslider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-experimentvideoslider.debug.xcconfig"; path = "Target Support Files/Pods-experimentvideoslider/Pods-experimentvideoslider.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB6CB4DD23C5AF22006625F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3D8038389F81B1BAE581FFF /* Pods_experimentvideoslider.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		90625CF44379FF842F27496C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				10F09ACEA14EC90D3CD1F61D /* Pods_experimentvideoslider.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A4B3E329002F92BD5677E2ED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F5DEC854160DE9ADBA00DB00 /* Pods-experimentvideoslider.debug.xcconfig */,
+				F2A2F5EC47BFB3ECDB9A44E1 /* Pods-experimentvideoslider.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EB6CB4D723C5AF22006625F1 = {
+			isa = PBXGroup;
+			children = (
+				EB6CB4E223C5AF22006625F1 /* experimentvideoslider */,
+				EB6CB4E123C5AF22006625F1 /* Products */,
+				A4B3E329002F92BD5677E2ED /* Pods */,
+				90625CF44379FF842F27496C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EB6CB4E123C5AF22006625F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB6CB4E023C5AF22006625F1 /* experimentvideoslider.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB6CB4E223C5AF22006625F1 /* experimentvideoslider */ = {
+			isa = PBXGroup;
+			children = (
+				EB6CB4F723C5AF51006625F1 /* VideosSliderView.swift */,
+				EB6CB4FA23C5AF51006625F1 /* VideosSliderViewCell.swift */,
+				EB2671C123F647D100BEAB3B /* SliderBaseView.swift */,
+				EB2671C323F647E500BEAB3B /* SliderImageView.swift */,
+				EB2671C523F647F900BEAB3B /* SliderVideoView.swift */,
+				EB6CB4E323C5AF22006625F1 /* AppDelegate.swift */,
+				EB6CB4E523C5AF22006625F1 /* SceneDelegate.swift */,
+				EB6CB4E723C5AF22006625F1 /* ViewController.swift */,
+				EB6CB4E923C5AF22006625F1 /* Main.storyboard */,
+				EB6CB4EC23C5AF25006625F1 /* Assets.xcassets */,
+				EB6CB4EE23C5AF25006625F1 /* LaunchScreen.storyboard */,
+				EB6CB4F123C5AF25006625F1 /* Info.plist */,
+				EB6CB50023C5C00C006625F1 /* AnimatedCollectionViewLayout.swift */,
+				EB6CB4FF23C5C00C006625F1 /* CubeAttributesAnimator.swift */,
+				EB6CB50123C5C00C006625F1 /* LayoutAttributesAnimator.swift */,
+				EB6CB50223C5C00D006625F1 /* UIView+Anchor.swift */,
+			);
+			path = experimentvideoslider;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EB6CB4DF23C5AF22006625F1 /* experimentvideoslider */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB6CB4F423C5AF25006625F1 /* Build configuration list for PBXNativeTarget "experimentvideoslider" */;
+			buildPhases = (
+				7471135350981FA21ED48B32 /* [CP] Check Pods Manifest.lock */,
+				EB6CB4DC23C5AF22006625F1 /* Sources */,
+				EB6CB4DD23C5AF22006625F1 /* Frameworks */,
+				EB6CB4DE23C5AF22006625F1 /* Resources */,
+				9D1FCB3DA3062CCD268D1320 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = experimentvideoslider;
+			productName = experimentvideoslider;
+			productReference = EB6CB4E023C5AF22006625F1 /* experimentvideoslider.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB6CB4D823C5AF22006625F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = ThaoPN;
+				TargetAttributes = {
+					EB6CB4DF23C5AF22006625F1 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+				};
+			};
+			buildConfigurationList = EB6CB4DB23C5AF22006625F1 /* Build configuration list for PBXProject "experimentvideoslider" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EB6CB4D723C5AF22006625F1;
+			productRefGroup = EB6CB4E123C5AF22006625F1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB6CB4DF23C5AF22006625F1 /* experimentvideoslider */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EB6CB4DE23C5AF22006625F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB6CB4F023C5AF25006625F1 /* LaunchScreen.storyboard in Resources */,
+				EB6CB4ED23C5AF25006625F1 /* Assets.xcassets in Resources */,
+				EB6CB4EB23C5AF22006625F1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7471135350981FA21ED48B32 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-experimentvideoslider-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D1FCB3DA3062CCD268D1320 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-experimentvideoslider/Pods-experimentvideoslider-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-experimentvideoslider/Pods-experimentvideoslider-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-experimentvideoslider/Pods-experimentvideoslider-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EB6CB4DC23C5AF22006625F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB6CB50323C5C00D006625F1 /* CubeAttributesAnimator.swift in Sources */,
+				EB2671C623F647F900BEAB3B /* SliderVideoView.swift in Sources */,
+				EB6CB50523C5C00D006625F1 /* LayoutAttributesAnimator.swift in Sources */,
+				EB6CB4E823C5AF22006625F1 /* ViewController.swift in Sources */,
+				EB2671C423F647E500BEAB3B /* SliderImageView.swift in Sources */,
+				EB6CB4FB23C5AF51006625F1 /* VideosSliderView.swift in Sources */,
+				EB6CB4E423C5AF22006625F1 /* AppDelegate.swift in Sources */,
+				EB6CB4FE23C5AF51006625F1 /* VideosSliderViewCell.swift in Sources */,
+				EB2671C223F647D100BEAB3B /* SliderBaseView.swift in Sources */,
+				EB6CB50423C5C00D006625F1 /* AnimatedCollectionViewLayout.swift in Sources */,
+				EB6CB4E623C5AF22006625F1 /* SceneDelegate.swift in Sources */,
+				EB6CB50623C5C00D006625F1 /* UIView+Anchor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EB6CB4E923C5AF22006625F1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB6CB4EA23C5AF22006625F1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EB6CB4EE23C5AF25006625F1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB6CB4EF23C5AF25006625F1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EB6CB4F223C5AF25006625F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EB6CB4F323C5AF25006625F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EB6CB4F523C5AF25006625F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5DEC854160DE9ADBA00DB00 /* Pods-experimentvideoslider.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = experimentvideoslider/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = thaopn.experimentvideoslider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EB6CB4F623C5AF25006625F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2A2F5EC47BFB3ECDB9A44E1 /* Pods-experimentvideoslider.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = experimentvideoslider/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = thaopn.experimentvideoslider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EB6CB4DB23C5AF22006625F1 /* Build configuration list for PBXProject "experimentvideoslider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB6CB4F223C5AF25006625F1 /* Debug */,
+				EB6CB4F323C5AF25006625F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB6CB4F423C5AF25006625F1 /* Build configuration list for PBXNativeTarget "experimentvideoslider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB6CB4F523C5AF25006625F1 /* Debug */,
+				EB6CB4F623C5AF25006625F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EB6CB4D823C5AF22006625F1 /* Project object */;
+}
