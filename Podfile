@@ -7,4 +7,5 @@ target 'experimentvideoslider' do
 
   # Pods for experimentvideoslider
   pod 'MMPlayerView'
+  pod 'SDWebImage', '~> 4.4.6'
 end

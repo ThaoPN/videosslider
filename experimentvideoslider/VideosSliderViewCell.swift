@@ -8,19 +8,75 @@
 
 import UIKit
 import AVFoundation
+import SDWebImage
+import MMPlayerView
 
-class MediaPlayer {
-    var isPlay: Bool = false
-    
-    func invalidate() {
-        
+class MediaPlayerView: UIImageView {
+    struct Constants {
+        static var getVideoPlaceHolder: URL {
+            let videoPath = Bundle.main.path(forResource: "no_video", ofType: "mov")
+            return URL(fileURLWithPath: videoPath!)
+        }
     }
     
-    func setMedia(media: Media, withView view: UIView) {
+    static var playerLayer: MMPlayerLayer = {
+        let l = MMPlayerLayer()
+        l.cacheType = .memory(count: 20)
+        l.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        l.autoPlay = true
+        l.coverView?.isHidden = true
+        l.player?.isMuted = true
+        l.player?.automaticallyWaitsToMinimizeStalling = false
+        l.masksToBounds = false
+        l.replace(cover: CoverA.instantiateFromNib())
+        return l
+    }()
+
+    var isPlay: Bool = false {
+        didSet {
+            if isPlay {
+                // play
+                play()
+            } else {
+                // stop
+                pause()
+            }
+        }
+    }
+    
+    private var media: MediaObject?
         
+    func setMedia(media: MediaObject, withView view: UIView) {
+        self.media = media
+        
+        switch media.type {
+        case .image:
+            MediaPlayerView.playerLayer.playView = nil
+            MediaPlayerView.playerLayer.set(url: URL(string: Constants.getVideoPlaceHolder.relativeString), lodDiskIfExist: true)
+            self.sd_setImage(with: media.url, placeholderImage: nil, options: .cacheMemoryOnly) { (image, error, cacheType, url) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        case .video:
+            if let thumbnailUrl = media.thumbnailUrl {
+                self.sd_setImage(with: thumbnailUrl, placeholderImage: nil, options: .cacheMemoryOnly) { (image, error, cacheType, url) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+            MediaPlayerView.playerLayer.playView = self
+            MediaPlayerView.playerLayer.set(url: media.url, lodDiskIfExist: true)
+            MediaPlayerView.playerLayer.resume()
+        }
     }
     
     func resume() {
+        
+    }
+    
+    func invalidate() {
         
     }
     
@@ -28,15 +84,138 @@ class MediaPlayer {
         
     }
     
+    func handlePlayerProgess() {
+//        MediaPlayerView.playerLayer.playProgress = { [weak self] progress in
+//            guard let `self` = self else { return }
+//            guard let esVideoView = self.stackView.arrangedSubviews[self.currentIndex] as? ESVideoView else { return }
+//            if !progress.isNaN && progress > 0.0 && self.isWaitingForPlay {
+//                self.isWaitingForPlay = false
+//            }
+//
+//            if !progress.isNaN && progress > 0.0 && self.isWaitingToPlayAudio {
+//                self.isWaitingToPlayAudio = false
+//                SoundtrackDownloader.shared.play()
+//            }
+//
+//            if self.player.isPlay == true && self.isWaitingToPlayAudio == false && SoundtrackDownloader.shared.isPlaying == false && progress > 0.0 {
+//                SoundtrackDownloader.shared.play()
+//            }
+//
+//            let secondInVideo = progress.isNaN ? 0 : Double(progress) * self.player.mediaDuration
+//            let secondInTotal = self.timeToNextVideo * Double(self.currentIndex) + secondInVideo
+//
+//            if secondInVideo <= 1 && self.currentIndex > 0 {
+//                esVideoView.thumbnailImageView.alpha = CGFloat(secondInVideo)
+//            } else if self.timeToNextVideo - secondInVideo <= 1 && self.currentIndex != self.hightlightStories.count - 1 {
+//                esVideoView.thumbnailImageView.alpha = CGFloat(self.timeToNextVideo - secondInVideo)
+//            } else {
+//                esVideoView.thumbnailImageView.alpha = 1.0
+//            }
+//
+//            if self.timeToNextVideo - secondInVideo <= 2 && self.currentIndex == self.hightlightStories.count - 1 {
+//                SoundtrackDownloader.shared.downVolume(downValue: Float(1 - (self.timeToNextVideo - secondInVideo) / 2))
+//            }
+//
+//            if !secondInVideo.isNaN {
+//                self.setTime(playedTime: secondInTotal)
+//            }
+//
+//            if self.currentIndex < self.hightlightStories.count {
+//                let media = self.hightlightStories[self.currentIndex].media[0]
+//                if let animation = self.selectedAnimateImage[media.value] {
+//                    switch animation {
+//                    case .zoomIn:
+//                        self.zoomInImageAnimation(scale: 0.1, second: secondInVideo, animateDuration: self.timeToNextVideo)
+//                    case .zoomOut:
+//                        self.zoomOutImageAnimation(scale: 0.1, second: secondInVideo, animateDuration: self.timeToNextVideo)
+//                    case .rightToLeft:
+//                        self.slideRightToLeftImageAnimation(second: secondInVideo, animateDuration: self.timeToNextVideo)
+//                    case .leftToRight:
+//                        self.slideLeftToRightImageAnimation(second: secondInVideo, animateDuration: self.timeToNextVideo)
+//                    }
+//                } else {
+//                    self.resetImageAnimation()
+//                }
+//            }
+//
+//            if self.isSeeking == false {
+//                let progressInTotal = secondInTotal / self.totalTimeOfStory
+//                self.seekBar.progress = CGFloat(progressInTotal)
+//                self.progressBar.progress = Float(progressInTotal)
+//            }
+//
+//            if progress >= 1 && self.player.mediaDuration <= self.timeToNextVideo {
+//                self.storyItemCompleted()
+//            } else {
+//                if progress.isNaN { return }
+//
+//                if Double(progress) * self.player.mediaDuration >= self.timeToNextVideo {
+//                    switch self.player.currentPlayStatus {
+//                    case .playing, .ready:
+//                        self.storyItemCompleted()
+//                    default:
+//                        break
+//                    }
+//                }
+//            }
+//        }
+        
+        MediaPlayerView.playerLayer.getStatusBlock { [weak self] (status) in
+            guard let `self` = self else { return }
+            switch status {
+            case .ready:
+                print("ready to play")
+//                if self.isWaitingForPlay {
+//                    self.player.isPlay = true
+//                    self.isWaitingForPlay = false
+//                }
+            case .playing:
+//                self.storyItemPlayed()
+                print("playing")
+            case .end:
+//                self.storyItemStoped()
+                print("end")
+            case .pause:
+                print("pause")
+//                self.storyItemStoped()
+            default:
+                break
+            }
+        }
+    }
+    
+    private func pause() {
+        guard let media = media else {
+            return
+        }
+        
+        if media.type == .image {
+            MediaPlayerView.playerLayer.player?.pause()
+        } else {
+            MediaPlayerView.playerLayer.player?.pause()
+        }
+    }
+    
+    private func play() {
+        guard let media = media else {
+            return
+        }
+        
+        if media.type == .image {
+            MediaPlayerView.playerLayer.player?.play()
+        } else {
+            MediaPlayerView.playerLayer.player?.play()
+        }
+    }
 }
 
 class VideosSliderViewCell: UIView {
-    var medias = [Media]()
+    var medias = [MediaObject]()
     lazy var contentImage: UIImageView = {
         let imv = UIImageView()
         return imv
     }()
-    private let player = MediaPlayer()
+    private let player = MediaPlayerView()
     private let durationForItem: CGFloat = 5
     private var currentIndex = 0
     
@@ -54,7 +233,7 @@ class VideosSliderViewCell: UIView {
         contentImage.fillToSuperview()
     }
     
-    func show(medias: [Media]) {
+    func show(medias: [MediaObject]) {
         self.medias = medias
     }
     
@@ -117,15 +296,6 @@ class VideosSliderViewCell: UIView {
             }
         }
 }
-
-enum MediaType {
-    case video, image
-}
-class Media {
-    var type: MediaType = .image
-    var url: String = ""
-}
-
 
 extension CGFloat {
     static func random() -> CGFloat {

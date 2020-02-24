@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,10 @@
 		EB2671C223F647D100BEAB3B /* SliderBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2671C123F647D100BEAB3B /* SliderBaseView.swift */; };
 		EB2671C423F647E500BEAB3B /* SliderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2671C323F647E500BEAB3B /* SliderImageView.swift */; };
 		EB2671C623F647F900BEAB3B /* SliderVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2671C523F647F900BEAB3B /* SliderVideoView.swift */; };
+		EB4F71B8240374BC00384A1B /* MediaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F71B7240374BC00384A1B /* MediaObject.swift */; };
+		EB4F71BA2403C9A300384A1B /* no_video.mov in Resources */ = {isa = PBXBuildFile; fileRef = EB4F71B92403C9A200384A1B /* no_video.mov */; };
+		EB4F71BD2403D56600384A1B /* CoverA.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F71BB2403D56500384A1B /* CoverA.swift */; };
+		EB4F71BE2403D56600384A1B /* CoverA.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB4F71BC2403D56500384A1B /* CoverA.xib */; };
 		EB6CB4E423C5AF22006625F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB4E323C5AF22006625F1 /* AppDelegate.swift */; };
 		EB6CB4E623C5AF22006625F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB4E523C5AF22006625F1 /* SceneDelegate.swift */; };
 		EB6CB4E823C5AF22006625F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB4E723C5AF22006625F1 /* ViewController.swift */; };
@@ -30,6 +34,10 @@
 		EB2671C123F647D100BEAB3B /* SliderBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderBaseView.swift; sourceTree = "<group>"; };
 		EB2671C323F647E500BEAB3B /* SliderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderImageView.swift; sourceTree = "<group>"; };
 		EB2671C523F647F900BEAB3B /* SliderVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderVideoView.swift; sourceTree = "<group>"; };
+		EB4F71B7240374BC00384A1B /* MediaObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaObject.swift; sourceTree = "<group>"; };
+		EB4F71B92403C9A200384A1B /* no_video.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = no_video.mov; sourceTree = "<group>"; };
+		EB4F71BB2403D56500384A1B /* CoverA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverA.swift; sourceTree = "<group>"; };
+		EB4F71BC2403D56500384A1B /* CoverA.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoverA.xib; sourceTree = "<group>"; };
 		EB6CB4E023C5AF22006625F1 /* experimentvideoslider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = experimentvideoslider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB6CB4E323C5AF22006625F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB6CB4E523C5AF22006625F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,9 +108,12 @@
 			children = (
 				EB6CB4F723C5AF51006625F1 /* VideosSliderView.swift */,
 				EB6CB4FA23C5AF51006625F1 /* VideosSliderViewCell.swift */,
+				EB4F71B7240374BC00384A1B /* MediaObject.swift */,
 				EB2671C123F647D100BEAB3B /* SliderBaseView.swift */,
 				EB2671C323F647E500BEAB3B /* SliderImageView.swift */,
 				EB2671C523F647F900BEAB3B /* SliderVideoView.swift */,
+				EB4F71BB2403D56500384A1B /* CoverA.swift */,
+				EB4F71BC2403D56500384A1B /* CoverA.xib */,
 				EB6CB4E323C5AF22006625F1 /* AppDelegate.swift */,
 				EB6CB4E523C5AF22006625F1 /* SceneDelegate.swift */,
 				EB6CB4E723C5AF22006625F1 /* ViewController.swift */,
@@ -114,6 +125,7 @@
 				EB6CB4FF23C5C00C006625F1 /* CubeAttributesAnimator.swift */,
 				EB6CB50123C5C00C006625F1 /* LayoutAttributesAnimator.swift */,
 				EB6CB50223C5C00D006625F1 /* UIView+Anchor.swift */,
+				EB4F71B92403C9A200384A1B /* no_video.mov */,
 			);
 			path = experimentvideoslider;
 			sourceTree = "<group>";
@@ -180,7 +192,9 @@
 			files = (
 				EB6CB4F023C5AF25006625F1 /* LaunchScreen.storyboard in Resources */,
 				EB6CB4ED23C5AF25006625F1 /* Assets.xcassets in Resources */,
+				EB4F71BE2403D56600384A1B /* CoverA.xib in Resources */,
 				EB6CB4EB23C5AF22006625F1 /* Main.storyboard in Resources */,
+				EB4F71BA2403C9A300384A1B /* no_video.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,9 +248,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB6CB50323C5C00D006625F1 /* CubeAttributesAnimator.swift in Sources */,
+				EB4F71BD2403D56600384A1B /* CoverA.swift in Sources */,
 				EB2671C623F647F900BEAB3B /* SliderVideoView.swift in Sources */,
 				EB6CB50523C5C00D006625F1 /* LayoutAttributesAnimator.swift in Sources */,
 				EB6CB4E823C5AF22006625F1 /* ViewController.swift in Sources */,
+				EB4F71B8240374BC00384A1B /* MediaObject.swift in Sources */,
 				EB2671C423F647E500BEAB3B /* SliderImageView.swift in Sources */,
 				EB6CB4FB23C5AF51006625F1 /* VideosSliderView.swift in Sources */,
 				EB6CB4E423C5AF22006625F1 /* AppDelegate.swift in Sources */,
