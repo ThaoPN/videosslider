@@ -12,7 +12,7 @@ enum MediaType {
     case image, video
 }
 
-class MediaObject: NSObject {
+struct MediaObject {
     var url: URL
     var type: MediaType
     var thumbnailUrl: URL?
@@ -21,6 +21,6 @@ class MediaObject: NSObject {
         self.url = url
         self.type = type
         self.thumbnailUrl = thumbnailUrl
-        super.init()
+//        super.init()
     }
 }

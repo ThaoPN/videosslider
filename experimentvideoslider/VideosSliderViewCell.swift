@@ -11,12 +11,21 @@ import AVFoundation
 import SDWebImage
 import MMPlayerView
 
-class MediaPlayerView: UIImageView {
+protocol MediaPlayerViewDelegate: class {
+    func mediaPlayerView(_ mediaView: MediaPlayerView, completedItem item: MediaObject)
+}
+
+class MediaPlayerView: UIImageView, MMPlayerCoverViewProtocol {
+    
+    weak var playLayer: MMPlayerLayer?
+    weak var delegate: MediaPlayerViewDelegate?
+    
     struct Constants {
         static var getVideoPlaceHolder: URL {
             let videoPath = Bundle.main.path(forResource: "no_video", ofType: "mov")
             return URL(fileURLWithPath: videoPath!)
         }
+        static let durationLimited = 3.0
     }
     
     static var playerLayer: MMPlayerLayer = {
@@ -28,7 +37,6 @@ class MediaPlayerView: UIImageView {
         l.player?.isMuted = true
         l.player?.automaticallyWaitsToMinimizeStalling = false
         l.masksToBounds = false
-        l.replace(cover: CoverA.instantiateFromNib())
         return l
     }()
 
@@ -46,42 +54,65 @@ class MediaPlayerView: UIImageView {
     
     private var media: MediaObject?
         
-    func setMedia(media: MediaObject, withView view: UIView) {
+    func setMedia(media: MediaObject, withView view: UIImageView) {
         self.media = media
-        
+        MediaPlayerView.playerLayer.newReplace(cover: self)
         switch media.type {
         case .image:
             MediaPlayerView.playerLayer.playView = nil
             MediaPlayerView.playerLayer.set(url: URL(string: Constants.getVideoPlaceHolder.relativeString), lodDiskIfExist: true)
-            self.sd_setImage(with: media.url, placeholderImage: nil, options: .cacheMemoryOnly) { (image, error, cacheType, url) in
+            self.sd_setImage(with: media.url, placeholderImage: nil, options: []) { (image, error, cacheType, url) in
                 if let error = error {
                     print(error.localizedDescription)
+                } else {
+                    view.image = image
                 }
             }
         case .video:
             if let thumbnailUrl = media.thumbnailUrl {
-                self.sd_setImage(with: thumbnailUrl, placeholderImage: nil, options: .cacheMemoryOnly) { (image, error, cacheType, url) in
+                self.sd_setImage(with: thumbnailUrl, placeholderImage: nil, options: []) { (image, error, cacheType, url) in
                     if let error = error {
                         print(error.localizedDescription)
                     }
                 }
             }
-            MediaPlayerView.playerLayer.playView = self
+            MediaPlayerView.playerLayer.playView = view
             MediaPlayerView.playerLayer.set(url: media.url, lodDiskIfExist: true)
             MediaPlayerView.playerLayer.resume()
         }
     }
     
     func resume() {
-        
+        MediaPlayerView.playerLayer.resume()
     }
     
     func invalidate() {
-        
+        MediaPlayerView.playerLayer.invalidate()
     }
     
     func seek(to time: CMTime, completionHandler: @escaping (Bool) -> Void) {
-        
+        MediaPlayerView.playerLayer.player?.seek(to: time, completionHandler: completionHandler)
+    }
+    
+    func currentPlayer(status: PlayStatus) {
+        switch status {
+        case .playing:
+            print("playing")
+        default:
+            print(status)
+        }
+    }
+    
+    func timerObserver(time: CMTime) {
+        if let duration = self.playLayer?.player?.currentItem?.asset.duration,
+            let media = self.media,
+            !duration.isIndefinite {
+            print("\(time.seconds) / \(duration.seconds)")
+            if time.seconds >= Constants.durationLimited {
+                invalidate()
+                delegate?.mediaPlayerView(self, completedItem: media)
+            }
+        }
     }
     
     func handlePlayerProgess() {
@@ -159,29 +190,6 @@ class MediaPlayerView: UIImageView {
 //                }
 //            }
 //        }
-        
-        MediaPlayerView.playerLayer.getStatusBlock { [weak self] (status) in
-            guard let `self` = self else { return }
-            switch status {
-            case .ready:
-                print("ready to play")
-//                if self.isWaitingForPlay {
-//                    self.player.isPlay = true
-//                    self.isWaitingForPlay = false
-//                }
-            case .playing:
-//                self.storyItemPlayed()
-                print("playing")
-            case .end:
-//                self.storyItemStoped()
-                print("end")
-            case .pause:
-                print("pause")
-//                self.storyItemStoped()
-            default:
-                break
-            }
-        }
     }
     
     private func pause() {
@@ -213,6 +221,7 @@ class VideosSliderViewCell: UIView {
     var medias = [MediaObject]()
     lazy var contentImage: UIImageView = {
         let imv = UIImageView()
+        imv.contentMode = .scaleAspectFill
         return imv
     }()
     private let player = MediaPlayerView()
@@ -231,10 +240,12 @@ class VideosSliderViewCell: UIView {
     private func setupView() {
         addSubview(contentImage)
         contentImage.fillToSuperview()
+        player.delegate = self
     }
     
     func show(medias: [MediaObject]) {
         self.medias = medias
+        seekTo()
     }
     
     func stop() {
@@ -267,6 +278,7 @@ class VideosSliderViewCell: UIView {
         currentIndex = index
             
         let media = medias[currentIndex]
+        print(media.url.relativeString)
 
         player.setMedia(media: media, withView: contentImage)
 //            isSeeking = true
@@ -297,6 +309,13 @@ class VideosSliderViewCell: UIView {
         }
 }
 
+extension VideosSliderViewCell: MediaPlayerViewDelegate {
+    func mediaPlayerView(_ mediaView: MediaPlayerView, completedItem item: MediaObject) {
+        let nextIndex = currentIndex + 1 >= medias.count ? 0 : currentIndex + 1
+        seekTo(videoIndex: nextIndex)
+    }
+}
+
 extension CGFloat {
     static func random() -> CGFloat {
         return CGFloat(arc4random()) / CGFloat(UInt32.max)
@@ -308,5 +327,11 @@ extension UIColor {
                        green: .random(),
                        blue:  .random(),
                        alpha: 1.0)
+    }
+}
+
+extension MMPlayerLayer {
+    func newReplace(cover: (UIImageView & MMPlayerCoverViewProtocol)) {
+        replace(cover: cover as (UIView & MMPlayerCoverViewProtocol))
     }
 }
