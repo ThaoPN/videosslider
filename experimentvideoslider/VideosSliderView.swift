@@ -49,9 +49,9 @@ class VideosSliderView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         scrollView.contentOffset.x = bounds.width
-        print(scrollView.contentOffset.x)
+        resetContentViewState()
         NSObject.cancelPreviousPerformRequests(withTarget: self)
-        self.perform(#selector(fillDataLayout), with: self, afterDelay: 0.5)
+        self.perform(#selector(fillDataLayout), with: self, afterDelay: 0.2)
     }
     
     private func setupUI() {
@@ -88,20 +88,26 @@ class VideosSliderView: UIView {
             }
         }
     }
-    var debug = false
+    
+    private func resetContentViewState() {
+        for view in self.contentStackView.arrangedSubviews {
+            view.transform = .identity
+            view.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            print(view.frame)
+        }
+    }
 }
 
 extension VideosSliderView: UIScrollViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("\(#function) \(decelerate)")
+        if decelerate {
+            scrollView.isScrollEnabled = false
+        }
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         print(#function)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            
-            for view in self.contentStackView.arrangedSubviews {
-//                view.transform = .identity
-                print(view.frame)
-                
-            }
-        }
         
         let page = Int(scrollView.contentOffset.x/self.bounds.width)
         switch page {
@@ -111,18 +117,18 @@ extension VideosSliderView: UIScrollViewDelegate {
             self.contentStackView.removeArrangedSubview(lastView)
             self.contentStackView.insertArrangedSubview(lastView, at: 0)
             self.scrollView.contentOffset.x = self.bounds.width
-            self.debug = true
+            resetContentViewState()
         case 2:
             // scroll to next
             let firstView = self.contentStackView.arrangedSubviews[0]
             self.contentStackView.removeArrangedSubview(firstView)
             self.contentStackView.addArrangedSubview(firstView)
             self.scrollView.contentOffset.x = self.bounds.width
-            self.debug = true
+            resetContentViewState()
         default:
             break
         }
-        
+        scrollView.isScrollEnabled = true
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -130,10 +136,6 @@ extension VideosSliderView: UIScrollViewDelegate {
     }
     
     private func transformViewsInScrollView(_ scrollView: UIScrollView) {
-        if debug {
-            debug = false
-            print(#function)
-        }
         let xOffset = scrollView.contentOffset.x
         let svWidth = self.frame.width
         var deg = maxAngle / svWidth * xOffset
@@ -151,21 +153,11 @@ extension VideosSliderView: UIScrollViewDelegate {
             
             view.layer.transform = transform
             
-            print("xOffset/svWidth: \(xOffset/svWidth)")
-//            let x = xOffset / svWidth > CGFloat(index) ? 1.0 : 0.0
-            var x = 0.5
-            if xOffset / svWidth > CGFloat(index) {
-                x = 1.0
-            } else if xOffset / svWidth == CGFloat(index) {
-                x = 0.5
-            } else {
-                x = 0.0
-            }
+            let x = xOffset / svWidth > CGFloat(index) ? 1.0 : 0.0
             setAnchorPoint(CGPoint(x: x, y: 0.5), forView: view)
             
 //            applyShadowForView(view, index: index)
         }
-        print("-----------------------------")
     }
     
     private func applyShadowForView(_ view: UIView, index: Int) {
@@ -190,12 +182,8 @@ extension VideosSliderView: UIScrollViewDelegate {
     }
     
     private func setAnchorPoint(_ anchorPoint: CGPoint, forView view: UIView) {
-        print(view)
         var newPoint = CGPoint(x: view.bounds.size.width * anchorPoint.x, y: view.bounds.size.height * anchorPoint.y)
         var oldPoint = CGPoint(x: view.bounds.size.width * view.layer.anchorPoint.x, y: view.bounds.size.height * view.layer.anchorPoint.y)
-        
-        print("newPoint: \(newPoint)")
-        print("oldPoint: \(oldPoint)")
         
         newPoint = newPoint.applying(view.transform)
         oldPoint = oldPoint.applying(view.transform)
@@ -209,9 +197,6 @@ extension VideosSliderView: UIScrollViewDelegate {
         
         view.layer.position = position
         view.layer.anchorPoint = anchorPoint
-        
-        print("position: \(position)")
-        print("anchorPoint: \(anchorPoint)")
     }
     
     private func frameFor(origin: CGPoint, size: CGSize) -> CGRect {
