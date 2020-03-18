@@ -224,7 +224,7 @@ class VideosSliderViewCell: UIView {
         imv.contentMode = .scaleAspectFill
         return imv
     }()
-    private let player = MediaPlayerView()
+    let player = MediaPlayerView()
     private let durationForItem: CGFloat = 5
     private var currentIndex = 0
     
@@ -244,6 +244,7 @@ class VideosSliderViewCell: UIView {
     }
     
     func show(medias: [MediaObject]) {
+        currentIndex = 0
         self.medias = medias
         seekTo()
     }

@@ -24,3 +24,11 @@ struct MediaObject {
 //        super.init()
     }
 }
+
+struct Story {
+    var medias: [MediaObject]
+    
+    init(medias: [MediaObject]) {
+        self.medias = medias
+    }
+}

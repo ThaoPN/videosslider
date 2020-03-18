@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var videosSliderView: VideosSliderView!
     
-    lazy var medias: [MediaObject] = {
+    lazy var stories: [Story] = {
         return makeFakeData()
     }()
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         videosSliderView.datasource = self
     }
 
-    private func makeFakeData() -> [MediaObject] {
+    private func makeFakeData() -> [Story] {
         let urlStrings = [
             "https://image.isu.pub/131111123920-1754baee39f623867cc9a5c52d01d7fd/jpg/page_1.jpg"
             ,"https://i.ytimg.com/vi/KF7-b7EhJvE/maxresdefault.jpg"
@@ -83,26 +83,30 @@ class ViewController: UIViewController {
         
         let urls = urlStrings.map { return URL(string: $0) }.compactMap { $0 }
         
-        var medias = [MediaObject]()
-        for url in urls {
-            let media = MediaObject(url, type: .image)
-            medias.append(media)
+//        var medias = [MediaObject]()
+//        for url in urls {
+//            let media = MediaObject(url, type: .image)
+//            medias.append(media)
+//        }
+        
+        var stories = [Story]()
+        for _ in 0..<5 {
+            let mediaUrls = Array<URL>(urls.shuffled().prefix(9))
+            let medias = mediaUrls.map { MediaObject($0, type: .image) }
+            let story = Story(medias: medias)
+            stories.append(story)
         }
         
-        return medias
+        return stories
     }
 }
 
 extension ViewController: VideosSliderViewDataSource {
     func numberOfItems() -> Int {
-        return 1
+        return stories.count
     }
     
     func videosSliderView(_ videosSliderView: VideosSliderView, index: Int) -> [MediaObject] {
-        return medias
-    }
-    
-    func getMedias() -> [MediaObject] {
-        return makeFakeData()
+        return stories[index].medias
     }
 }

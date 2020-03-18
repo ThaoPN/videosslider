@@ -34,7 +34,18 @@ class VideosSliderView: UIView {
         return stackView
     }()
     
+    private var displayedView: VideosSliderViewCell? {
+        if contentStackView.arrangedSubviews.isEmpty ||
+            contentStackView.arrangedSubviews.count < 2 {
+            return nil
+        }
+        return contentStackView.arrangedSubviews[1] as? VideosSliderViewCell
+    }
     private let maxAngle: CGFloat = 60.0
+    private var currentIndex = 0
+    private var totalItems: Int {
+        return datasource?.numberOfItems() ?? 0
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,8 +80,9 @@ class VideosSliderView: UIView {
     }
     
     private func updateLayout() {
-        for _ in 0..<3 {
+        for i in 0..<3 {
             let view = VideosSliderViewCell(frame: bounds)
+            view.tag = i
             view.clipsToBounds = true
             view.backgroundColor = .random()
             contentStackView.addArrangedSubview(view)
@@ -80,11 +92,13 @@ class VideosSliderView: UIView {
     }
     
     @objc func fillDataLayout() {
-        if let medias = datasource?.videosSliderView(self, index: 0),
-            let displayedView = contentStackView.arrangedSubviews[1] as? VideosSliderViewCell {
-//            displayedView.show(medias: medias)
-            for view in contentStackView.arrangedSubviews {
-                (view as? VideosSliderViewCell)?.contentImage.sd_setImage(with: medias[0].url, completed: nil)
+        if totalItems > 0 {
+            if let medias = datasource?.videosSliderView(self, index: currentIndex),
+                let displayedView = self.displayedView {
+                displayedView.show(medias: medias)
+//                for view in contentStackView.arrangedSubviews {
+//                    (view as? VideosSliderViewCell)?.contentImage.sd_setImage(with: medias[0].url, completed: nil)
+//                }
             }
         }
     }
@@ -93,7 +107,6 @@ class VideosSliderView: UIView {
         for view in self.contentStackView.arrangedSubviews {
             view.transform = .identity
             view.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-            print(view.frame)
         }
     }
 }
@@ -118,6 +131,8 @@ extension VideosSliderView: UIScrollViewDelegate {
             self.contentStackView.insertArrangedSubview(lastView, at: 0)
             self.scrollView.contentOffset.x = self.bounds.width
             resetContentViewState()
+            currentIndex = currentIndex - 1 >= 0 ? currentIndex - 1 : totalItems - 1
+            fillDataLayout()
         case 2:
             // scroll to next
             let firstView = self.contentStackView.arrangedSubviews[0]
@@ -125,6 +140,8 @@ extension VideosSliderView: UIScrollViewDelegate {
             self.contentStackView.addArrangedSubview(firstView)
             self.scrollView.contentOffset.x = self.bounds.width
             resetContentViewState()
+            currentIndex = currentIndex + 1 < totalItems ? currentIndex + 1 : 0
+            fillDataLayout()
         default:
             break
         }
@@ -132,6 +149,9 @@ extension VideosSliderView: UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if displayedView?.player.isPlay == true {
+            displayedView?.player.isPlay = false
+        }
         transformViewsInScrollView(scrollView)
     }
     
